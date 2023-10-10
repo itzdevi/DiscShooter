@@ -1,30 +1,28 @@
-// Copyright (c) FIRST and other WPILib contributors.
-// Open Source Software; you can modify and/or share it under the terms of
-// the WPILib BSD license file in the root directory of this project.
-
 package frc.robot;
 
-/**
- * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
- * constants. This class should not be used for any other purpose. All constants should be declared
- * globally (i.e. public static). Do not put anything functional in this class.
- *
- * <p>It is advised to statically import this class (or one of its inner classes) wherever the
- * constants are needed, to reduce verbosity.
- */
 public final class Constants {
-  public static final int flywheel = 1;
-  public static final double fkP = 0.7;
-  public static final double fkV = 1/12;
-  public static final double fkS = 2/12;
-  public static final double fkA = 3/12;
-  public static final int hood = 2;
-  public static final double hkP = 0.2;
-  public static final double hkI = 0.02;
-  public static final double hkD = 0.002;
-  public static final double hkV = 1/12;
-  public static final double hkS = 2/12;
-  public static final double hkA = 3/12;
+  public static final double CYCLE_DT = 0.02;
 
+  public static class ShooterConstants {
+    public static final int FLYWHEEL_MOTOR_ID = 0;
+    public static final int HOOD_MOTOR_ID = 0;
+    public static final int HOOD_ABSOULTE_ENCODER_ID = 0;
+    public static final String LIMELIGHT_TABLE_KEY = "limelight";
 
+    public static final double FLYWHEEL_KS = 0;
+    public static final double FLYWHEEL_KD = 0;
+    public static final double FLYWHEEL_KA = 0;
+
+    public static final double HOOD_KS = 0;
+    public static final double HOOD_KD = 0;
+    public static final double HOOD_KA = 0;
+
+    public static final double FLYWHEEL_PULSES_PER_METER = 1;
+    public static final double HOOD_PULSES_PER_METER = 1;
+    public static final double HOOD_PULSES_PER_DEGREE = 1;
+
+    public static final double FLYWHEEL_VELOCITY = 20;
+    public static final double HOOD_VELOCITY = 0.7;
+    public static final double HOOD_ACCELERATION = 2;
+  }
 }
