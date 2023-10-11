@@ -127,7 +127,7 @@ public class Shooter extends SubsystemBase {
   }
 
   public void stopShooting() {
-    mFlywheel.set(ControlMode.PercentOutput, 0);
+    setShootingPower(0);
   }
 
   public void calibrateHoodOffset() {
@@ -146,5 +146,5 @@ public class Shooter extends SubsystemBase {
   public static double getAngleDifference(double current, double target) {
     double difference = (target - current) % 360;
     return difference - ((int)difference / 180) * 360;
-}
+  }
 }
