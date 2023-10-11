@@ -25,7 +25,7 @@ public class ShootOnTargetCommand extends CommandBase {
   @Override
   public void execute() {
     boolean a = controller.a().getAsBoolean();
-    shooter.setShootingVelocity(a ? 1 : 0 * FLYWHEEL_VELOCITY);
+    shooter.setShootingVelocity((a ? 1 : 0) * FLYWHEEL_VELOCITY);
 
     Rotation2d angleToTarget = shooter.getTargetVector().getAngle();
     shooter.setHoodAngle(angleToTarget.getDegrees());

@@ -27,7 +27,7 @@ public class ManualShootCommand extends CommandBase {
   public void execute() {
     boolean a = controller.a().getAsBoolean();
     double leftY = controller.getLeftY();
-    shooter.setShootingVelocity(a ? 1 : 0 * FLYWHEEL_VELOCITY);
+    shooter.setShootingVelocity((a ? 1 : 0) * FLYWHEEL_VELOCITY);
     shooter.setHoodVelocity(leftY * HOOD_VELOCITY);
   }
 }
