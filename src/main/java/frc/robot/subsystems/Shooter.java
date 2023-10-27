@@ -67,14 +67,14 @@ public class Shooter extends SubsystemBase {
   
   public void setFlywheelPID(double kP, double kI, double kD) {
     mFlywheel.config_kP(0, kP);
-    mFlywheel.config_kP(0, kI);
-    mFlywheel.config_kP(0, kD);
+    mFlywheel.config_kI(0, kI);
+    mFlywheel.config_kD(0, kD);
   }
 
   public void setHoodlPID(double kP, double kI, double kD) {
     mHood.config_kP(0, kP);
-    mHood.config_kP(0, kI);
-    mHood.config_kP(0, kD);
+    mHood.config_kI(0, kI);
+    mHood.config_kD(0, kD);
   }
   
   /**
