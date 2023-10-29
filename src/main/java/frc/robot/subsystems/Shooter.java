@@ -50,15 +50,22 @@ public class Shooter extends SubsystemBase {
 
   // Methods to get Limelight data
   public double getTargetX() {
-    return limelightTable.getEntry("tx").getDouble(0.0);
+    return limelightTable.getEntry("wdist").getDouble(0.0);
   }
 
   public double getTargetY() {
-    return limelightTable.getEntry("ty").getDouble(0.0);
+    return limelightTable.getEntry("hdist").getDouble(0.0);
   }
   
   public double getTargetArea() {
-    return limelightTable.getEntry("ta").getDouble(0.0);
+    return limelightTable.getEntry("dist").getDouble(0.0);
+  }
+  public double getTargetXAngle() {
+    return limelightTable.getEntry("wangle").getDouble(0.0);
+  }
+
+  public double getTargetYAngle() {
+    return limelightTable.getEntry("hangle").getDouble(0.0);
   }
 
   public Translation2d getTargetVector() {
