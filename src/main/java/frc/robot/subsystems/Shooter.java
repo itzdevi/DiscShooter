@@ -8,7 +8,6 @@ import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.DemandType;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-import com.ctre.phoenix.sensors.CANCoder;
 
 import edu.wpi.first.math.controller.SimpleMotorFeedforward;
 import edu.wpi.first.math.geometry.Rotation2d;
@@ -23,7 +22,6 @@ import static frc.robot.Constants.ShooterConstants.*;
 public class Shooter extends SubsystemBase {
   private final TalonFX mFlywheel;
   private final TalonSRX mHood;
-  private final CANCoder hoodAbsoulteEncoder;
   
   private final SimpleMotorFeedforward flywheelFF;
   private final SimpleMotorFeedforward hoodFF;
@@ -36,7 +34,6 @@ public class Shooter extends SubsystemBase {
   public Shooter() {
     mFlywheel = new TalonFX(FLYWHEEL_MOTOR_ID);
     mHood = new TalonSRX(HOOD_MOTOR_ID);
-    hoodAbsoulteEncoder = new CANCoder(HOOD_ABSOULTE_ENCODER_ID);
 
     flywheelFF = new SimpleMotorFeedforward(FLYWHEEL_KS, FLYWHEEL_KD, FLYWHEEL_KA);
     hoodFF = new SimpleMotorFeedforward(HOOD_KS, HOOD_KD, HOOD_KA);
@@ -150,11 +147,11 @@ public class Shooter extends SubsystemBase {
   }
 
   public void calibrateHoodOffset() {
-    hoodAngleOffset = hoodAbsoulteEncoder.getAbsolutePosition();
+    hoodAngleOffset = mHood.getSelectedSensorPosition();
   }
 
   public Rotation2d getHoodAngle() {
-    return Rotation2d.fromDegrees(hoodAbsoulteEncoder.getAbsolutePosition() + hoodAngleOffset);
+    return Rotation2d.fromDegrees(mHood.getSelectedSensorPosition() + hoodAngleOffset);
   }
 
   private double calculateTargetPosition(double targetAngle) {

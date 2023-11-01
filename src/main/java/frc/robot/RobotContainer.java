@@ -6,11 +6,14 @@ import frc.robot.commands.ManualShootCommand;
 import frc.robot.subsystems.Shooter;
 
 public class RobotContainer {
-  Shooter shooter = new Shooter();
-  CommandXboxController controler = new CommandXboxController(0);
-  ManualShootCommand mshoot = new ManualShootCommand(shooter, controler);
+  Shooter shooter;
+  CommandXboxController controler;
+  ManualShootCommand mshoot;
 
   public RobotContainer() {
+    shooter = new Shooter();
+    controler = new CommandXboxController(0);
+    mshoot = new ManualShootCommand(shooter, controler);
   }
   
   public Command getAutonomousCommand() {

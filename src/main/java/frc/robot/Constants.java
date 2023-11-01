@@ -4,9 +4,8 @@ public final class Constants {
   public static final double CYCLE_DT = 0.02;
 
   public static class ShooterConstants {
-    public static final int FLYWHEEL_MOTOR_ID = 0;
-    public static final int HOOD_MOTOR_ID = 0;
-    public static final int HOOD_ABSOULTE_ENCODER_ID = 0;
+    public static final int FLYWHEEL_MOTOR_ID = 1;
+    public static final int HOOD_MOTOR_ID = 9;
     public static final String LIMELIGHT_TABLE_KEY = "limelight";
 
     public static final double FLYWHEEL_KS = 0;
