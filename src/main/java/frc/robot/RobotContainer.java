@@ -1,22 +1,38 @@
 package frc.robot;
 
+import edu.wpi.first.util.sendable.Sendable;
+import edu.wpi.first.util.sendable.SendableBuilder;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.commands.ManualShootCommand;
 import frc.robot.subsystems.Shooter;
 
-public class RobotContainer {
-  Shooter shooter;
-  CommandXboxController controler;
-  ManualShootCommand mshoot;
+public class RobotContainer implements Sendable{
 
+  public Shooter shooter = new Shooter();
+  public CommandXboxController controler = new CommandXboxController(0);
+  public ManualShootCommand command = new ManualShootCommand(shooter, controler);
+  
   public RobotContainer() {
-    shooter = new Shooter();
-    controler = new CommandXboxController(0);
-    mshoot = new ManualShootCommand(shooter, controler);
+    SmartDashboard.putData("RC", this);
+    configureBindings();
+    shooter.setDefaultCommand(command);
+    
+    
+  }
+
+  @Override
+  public void initSendable(SendableBuilder builder) {
+
+    builder.addDoubleProperty("v", shooter::getShootingVelocity, null);
+    builder.addDoubleProperty("p", shooter::getShootingPower, null);
+  }
+  private void configureBindings() {
+    
+  }
+  public Command getAutonomousCommand() {
+    return null;
   }
   
-  public Command getAutonomousCommand() {
-    return mshoot;
-  }
 }
