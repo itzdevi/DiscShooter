@@ -94,6 +94,8 @@ public class Shooter extends SubsystemBase {
     left.set(ControlMode.Velocity, wheelSpeeds.leftMetersPerSecond*PULSES_PER_METER);
     right.set(ControlMode.Velocity, wheelSpeeds.rightMetersPerSecond*PULSES_PER_METER);
   }
-  
+  public double Angle(){
+    return gyro.getFusedHeading();
+  }
   
 }
