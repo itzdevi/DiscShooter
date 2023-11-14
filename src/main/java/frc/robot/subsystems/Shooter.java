@@ -7,20 +7,19 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import com.ctre.phoenix.sensors.PigeonIMU;
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.DemandType;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.math.kinematics.DifferentialDriveOdometry;
 import edu.wpi.first.math.kinematics.DifferentialDriveWheelSpeeds;
-import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.smartdashboard.Field2d;
 
 import static frc.robot.Constants.ShooterConstants.*;
 
 public class Shooter extends SubsystemBase {
   private TalonFX mFlywheel;
-  private Servo servo;
 
   private TalonFX left;
   private TalonFX right;
@@ -33,7 +32,6 @@ public class Shooter extends SubsystemBase {
   public Shooter() {
     super();
     mFlywheel = new TalonFX(FLYWHEEL_MOTOR_ID);
-    servo = new Servo(SERVO_ID);
 
     left = initMotors(LeftFrontMotor, LeftBackMotor, LeftInverted);
     right = initMotors(RightFrontMotor, RightBackMotor, RightInverted);
@@ -78,6 +76,9 @@ public class Shooter extends SubsystemBase {
   public void setShootingPower(double power) {
     mFlywheel.set(ControlMode.PercentOutput, power);
   }
+  public void setShootingVelosity(double v) {
+    mFlywheel.set(ControlMode.Velocity, v*PULSES_PER_METER/10, DemandType.ArbitraryFeedForward, calcFF(v));
+}
   public double getShootingPower() {
     return-(mFlywheel.getMotorOutputPercent());
   }
@@ -85,9 +86,7 @@ public class Shooter extends SubsystemBase {
   public void stopShooting() {
     setShootingPower(0);
   }
-  public void setServoToAngle(double servoAngle){
-    servo.setAngle(servoAngle);
-  }
+
 
   public void setVelocity(ChassisSpeeds chassisSpeeds){
     wheelSpeeds = KINEMATICS.toWheelSpeeds(chassisSpeeds);
@@ -97,5 +96,7 @@ public class Shooter extends SubsystemBase {
   public double Angle(){
     return gyro.getFusedHeading();
   }
-  
+  public double calcFF(double v) {
+    return ks + kv*v + kv2*v*v;
+  }
 }

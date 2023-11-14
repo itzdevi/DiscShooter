@@ -12,7 +12,7 @@ public class RobotContainer implements Sendable{
 
   public Shooter shooter = new Shooter();
   public CommandXboxController controler = new CommandXboxController(0);
-  public ManualShootCommand command = new ManualShootCommand(shooter, controler,1 ,45, 4);
+  public ManualShootCommand command = new ManualShootCommand(shooter, controler);
   
   public RobotContainer() {
     SmartDashboard.putData("RC", this);

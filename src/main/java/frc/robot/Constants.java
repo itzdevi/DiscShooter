@@ -13,9 +13,8 @@ public final class Constants {
 
     public static final double FLYWHEEL_VELOCITY_Multiplayer = 0.1;  // Velocity multiplier for the flywheel
 
-    public static final int SERVO_ID = 9;  // ID of the Servo
-
     public static final int GYRO_ID = 14;  // ID of the Gyro
+
     // IDs of front and back motors for left and right
     public static final int LeftFrontMotor = 2;
     public static final int LeftBackMotor = 3;
@@ -31,6 +30,10 @@ public final class Constants {
     public static final double GearRatio = 8.14;
     public static final double PulsePerRotation = 2048;
     public static final double PULSES_PER_METER = (1/WheelCircumference)*GearRatio*PulsePerRotation;
+
+    public static final double ks = 0.05;
+    public static final double kv = 0.01;
+    public static final double kv2 = 0.0001;
 
     public static DifferentialDriveKinematics KINEMATICS = new DifferentialDriveKinematics(1);
   }
