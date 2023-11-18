@@ -7,13 +7,11 @@ import frc.robot.subsystems.Shooter;
 
 public class ManualShootCommand extends CommandBase {
   private Shooter shooter;
-  private CommandXboxController controller;
+  private Double dist;
 
-
-  public ManualShootCommand(Shooter shooter, CommandXboxController controller) {
+  public ManualShootCommand(Shooter shooter,Double dist) {
     this.shooter = shooter;
-    this.controller = controller;
-
+    this.dist = dist;
     addRequirements(shooter);
   }
 
@@ -24,11 +22,7 @@ public class ManualShootCommand extends CommandBase {
 
   @Override
   public void execute() {
-    shooter.setShootingPower(controller.getLeftY());
-    double vx = 0;
-    double vOmega = controller.getRightX();
-    ChassisSpeeds speeds = new ChassisSpeeds(vx, 0, vOmega);
-    shooter.setVelocity(speeds);
+    shooter.setShootingPower(dist);
 
   }
 }

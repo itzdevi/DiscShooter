@@ -17,6 +17,8 @@ public final class Constants {
 
     public static final int FID_MOTOR_ID = 6;  // ID of the Snow blower
 
+    public static final int UAD_MOTOR_ID = 7;  // ID of the Snow blower
+
     public static final double NORMAL_VOLTEG_OF_SNOW_BLOWER = 0.5;  // ID of the Snow blower
 
     // IDs of front and back motors for left and right
