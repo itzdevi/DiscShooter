@@ -27,6 +27,7 @@ public class RobotContainer implements Sendable{
 
     builder.addDoubleProperty("v", shooter::getShootingVelocity, null);
     builder.addDoubleProperty("p", shooter::getShootingPower, null);
+    builder.addDoubleProperty("c", shooter::getMFidVoltage, null);
   }
   private void configureBindings() {
     

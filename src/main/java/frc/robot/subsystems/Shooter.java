@@ -24,6 +24,7 @@ public class Shooter extends SubsystemBase {
   private TalonFX left;
   private TalonFX right;
 
+  private TalonFX mFid;
   private PigeonIMU gyro;
   private Field2d field;
   DifferentialDriveOdometry odometry;
@@ -33,10 +34,13 @@ public class Shooter extends SubsystemBase {
     super();
     mFlywheel = new TalonFX(FLYWHEEL_MOTOR_ID);
 
+    mFid = new TalonFX(FID_MOTOR_ID);
+
     left = initMotors(LeftFrontMotor, LeftBackMotor, LeftInverted);
     right = initMotors(RightFrontMotor, RightBackMotor, RightInverted);
 
     setPID(mFlywheel, 0.7, 0, 0);
+    setPID(mFid, 0.4, 0.04, 0.004);
     mFlywheel.setInverted(false);
 
     gyro = new PigeonIMU(GYRO_ID);
@@ -59,7 +63,7 @@ public class Shooter extends SubsystemBase {
     m.setInverted(invert);
     f.setInverted(invert);
     f.follow(m);
-    setPID(m, 0.2, 0.03,0.003);
+    setPID(m, 0.3, 0.03,0.003);
     return m;
 }
   
@@ -99,4 +103,16 @@ public class Shooter extends SubsystemBase {
   public double calcFF(double v) {
     return ks + kv*v + kv2*v*v;
   }
+  public void Fid(double fidSpeed){
+    while(mFid.getMotorOutputVoltage()>NORMAL_VOLTEG_OF_SNOW_BLOWER){
+      mFid.set(ControlMode.PercentOutput,fidSpeed);
+    }
+  }
+  public void setMFidPower(double fidPower){
+    mFid.set(ControlMode.PercentOutput,fidPower);
+  }
+  public double getMFidVoltage() {
+    return mFid.getMotorOutputVoltage();
+  }
 }
+//getOutputCurrent

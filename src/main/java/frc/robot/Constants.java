@@ -15,6 +15,10 @@ public final class Constants {
 
     public static final int GYRO_ID = 14;  // ID of the Gyro
 
+    public static final int FID_MOTOR_ID = 6;  // ID of the Snow blower
+
+    public static final double NORMAL_VOLTEG_OF_SNOW_BLOWER = 0.5;  // ID of the Snow blower
+
     // IDs of front and back motors for left and right
     public static final int LeftFrontMotor = 2;
     public static final int LeftBackMotor = 3;
