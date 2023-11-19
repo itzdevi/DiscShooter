@@ -9,13 +9,17 @@ import static frc.robot.Constants.ShooterConstants.*;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
+import com.ctre.phoenix.sensors.PigeonIMU;
 public class UpAndDown extends SubsystemBase {
   /** Creates a new FidingSubsistem. */
-  private TalonFX mUad;
+  private TalonFX mUAD;
+  private PigeonIMU gyro;
   public UpAndDown() {
 
-    mUad = new TalonFX(FID_MOTOR_ID);
-    setPID(mUad, 0.2, 0.03, 0.003);
+    mUAD = new TalonFX(FID_MOTOR_ID);
+    setPID(mUAD, 0.4, 0.04, 0.004);
+
+    gyro = new PigeonIMU(GYRO_ID);
   }
 
   public void setPID(TalonFX motor, double kP, double kI, double kD) {
@@ -24,17 +28,16 @@ public class UpAndDown extends SubsystemBase {
     motor.config_kP(0, kD);
   }
 
-  public void Fid(double fidSpeed){
-    while(mUad.getMotorOutputVoltage()>NORMAL_VOLTEG_OF_SNOW_BLOWER){
-      mUad.set(ControlMode.PercentOutput,fidSpeed);
-    }
-  }
-  
-  public void setMFidPower(double fidPower){
-    mUad.set(ControlMode.PercentOutput,fidPower);
+  public void SetUADVelosyty(double UADVelosyty){
+    mUAD.set(ControlMode.Velocity,UADVelosyty);
+    
   }
 
   public double getMFidVoltage() {
-    return mUad.getMotorOutputVoltage();
+    return mUAD.getMotorOutputVoltage();
+  }
+  
+  public double getpigonPitch(){
+    return gyro.getPitch();
   }
 }
